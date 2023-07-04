@@ -1,2 +1,2 @@
-# qa_java
+# sprint_6
 QA Java Project
