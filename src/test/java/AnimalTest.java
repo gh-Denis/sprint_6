@@ -29,7 +29,7 @@ public class AnimalTest {
         try {
             animal.getFood("Нечто");
         } catch (Exception exception) {
-            Assert.assertEquals("Неизвестный вид животного","Неизвестный вид животного, используйте значение Травоядное или Хищник", exception.getMessage());
+            Assert.assertEquals("Неизвестный вид животного", "Неизвестный вид животного, используйте значение Травоядное или Хищник", exception.getMessage());
         }
     }
 
@@ -38,6 +38,6 @@ public class AnimalTest {
         Animal animal = new Animal();
         String actual = animal.getFamily();
         String expected = "Существует несколько семейств: заячьи, беличьи, мышиные, кошачьи, псовые, медвежьи, куньи";
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected, actual);
     }
 }

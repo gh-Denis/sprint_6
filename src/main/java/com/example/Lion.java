@@ -4,17 +4,17 @@ import java.util.List;
 
 public class Lion {
 
-    boolean hasMane;
-    private Feline feline;
+    private final boolean hasMane;
+    private final Feline feline;
 
-    public Lion(Feline feline, String sex) throws Exception {
+    public Lion(Feline feline, String sex) {
         this.feline = feline;
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного - самец или самка");
+            throw new IllegalArgumentException("Используйте допустимые значения пола животного - самец или самка");
         }
     }
 

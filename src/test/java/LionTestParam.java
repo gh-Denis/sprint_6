@@ -10,9 +10,9 @@ import org.mockito.MockitoAnnotations;
 
 @RunWith(Parameterized.class)
 public class LionTestParam {
-    private String sex;
-    private boolean hasMane;
-    private int kittensCount;
+    private final String sex;
+    private final boolean hasMane;
+    private final int kittensCount;
 
     public LionTestParam(String sex, boolean hasMane, int kittensCount) {
         this.sex = sex;
@@ -20,32 +20,32 @@ public class LionTestParam {
         this.kittensCount = kittensCount;
     }
 
-    @Before
-    public void initMockito() {
-        MockitoAnnotations.openMocks(this);
-    }
-
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Парамерты: Пол животного = {0}; Наличие гривы = {1}; Количество детенышей = {2}")
     public static Object[][] setLionSex() {
-        return new Object[][] {
+        return new Object[][]{
                 {"Самец", true, 1},
                 {"Самка", false, 1}
         };
     }
 
-    @Test
-    public void testLionHaveMane() throws Exception {
-        Feline feline = new Feline();
-        Lion lion = new Lion(feline,sex);
-        boolean lionHaveMane = hasMane;
-        Assert.assertEquals("Используйте допустимые значения пола животного - самец или самка",lionHaveMane,lion.doesHaveMane());
+    @Before
+    public void initMockito() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testLionGetKittens() throws Exception {
+    public void testLionHaveMane() {
         Feline feline = new Feline();
-        Lion lion = new Lion(feline,sex);
+        Lion lion = new Lion(feline, sex);
+        boolean lionHaveMane = hasMane;
+        Assert.assertEquals("Используйте допустимые значения пола животного - самец или самка", lionHaveMane, lion.doesHaveMane());
+    }
+
+    @Test
+    public void testLionGetKittens() {
+        Feline feline = new Feline();
+        Lion lion = new Lion(feline, sex);
         int lionKittens = kittensCount;
-        Assert.assertEquals("У львов 1 львенок",lionKittens,lion.getKittens());
+        Assert.assertEquals("У львов 1 детеныш", lionKittens, lion.getKittens());
     }
 }
